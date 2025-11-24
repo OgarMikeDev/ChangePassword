@@ -78,4 +78,6 @@ public class Main {
         }
         return returnPassword;
     }
+
+    //TODO Fly -> G(5 + 1)n(11 + 2)b(23 + 3) -> Gnb
 }
