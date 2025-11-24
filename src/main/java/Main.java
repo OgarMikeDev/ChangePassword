@@ -12,7 +12,9 @@ public class Main {
 
         System.out.println("Введите пароль: ");
         String inputPassword = new Scanner(System.in).nextLine();
-        System.out.println(changePassword(inputPassword));
+        String newPassword = changePassword(inputPassword);
+        System.out.println(newPassword);
+        System.out.println(returnPassword(newPassword));
     }
 
     public static String changePassword(String inputPassword) {
@@ -50,12 +52,30 @@ public class Main {
             for (int indexCurrentLetterAlphabet = 0; indexCurrentLetterAlphabet < alphabetLetters.size(); indexCurrentLetterAlphabet++) {
                 char currentLetterAlphabet = alphabetLetters.get(indexCurrentLetterAlphabet);
                 if (letterInputPassword == currentLetterAlphabet) {
-                    //TODO Hello -> I(7 + 1)g(4 + 2)o(11 + 3)p(11 + 4)t(14 + 5) -> Igopt
+                    //TODO Hello -> I(7 + 1)g(4 + 2)o(11 + 3)p(11  + 4)t(14 + 5) -> Igopt
                     newPassword += alphabetLetters.get(indexCurrentLetterAlphabet + step);
                 }
             }
             step++;
         }
         return newPassword;
+    }
+
+    //TODO Декодировать новый пароль, чтобы он преобразовался в исходный
+    public static String returnPassword(String newPassword) {
+        String returnPassword = "";
+        int step = 1;
+        for (int indexLetterInputPassword = 0; indexLetterInputPassword < newPassword.length(); indexLetterInputPassword++) {
+            char letterInputPassword = newPassword.charAt(indexLetterInputPassword);
+            for (int indexCurrentLetterAlphabet = 0; indexCurrentLetterAlphabet < alphabetLetters.size(); indexCurrentLetterAlphabet++) {
+                char currentLetterAlphabet = alphabetLetters.get(indexCurrentLetterAlphabet);
+                if (letterInputPassword == currentLetterAlphabet) {
+                    //TODO Igopt -> H(8 - 1)e(6 - 2)l(14 - 3)l(15 - 4)o(19 - 5) -> Hello
+                    returnPassword += alphabetLetters.get(indexCurrentLetterAlphabet - step);
+                }
+            }
+            step++;
+        }
+        return returnPassword;
     }
 }
