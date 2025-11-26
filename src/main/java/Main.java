@@ -3,81 +3,71 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static List<Character> alphabetLetters = new ArrayList<>();
+    private static List<Character> alphabet = new ArrayList<>();
     public static void main(String[] args) {
-        /*
-        TODO
-         Abd -> B(0 + 1)d(1 + 2)g(3 + 3) -> Bdg.
-         */
-
         System.out.println("Введите пароль: ");
         String inputPassword = new Scanner(System.in).nextLine();
-        String newPassword = changePassword(inputPassword);
-        System.out.println(newPassword);
-        System.out.println(returnPassword(newPassword));
-    }
 
-    public static String changePassword(String inputPassword) {
-        String newPassword = "";
-
+        /*
+        TODO Hello -> I(7 + 1)g(4 + 2)o(11 + 3)p(11 + 4)t(14 + 5) -> Igopt
+         (7 + 1) ->
+            7 - индекс буквы "H" в английском алфавите(начинается с 0);
+            1 - порядковый номер текущей буквы("H") в слове(начинается с 1)
+         */
         for (int i = 65; i <= 122; i++) {
             if (i == 91) {
                 i += 6;
             }
-            char currentSymbol = (char) i;
-            alphabetLetters.add(currentSymbol);
+            Character currentChar = (char) i;
+            alphabet.add(currentChar);
         }
+
+        String encryptionPassword = encryptionPassword(inputPassword);
+        System.out.println("Исходный пароль: " + inputPassword +
+                "\nЗашифрованный пароль: " + encryptionPassword);
+    }
+
+    public static String encryptionPassword(String inputPassword) {
+        String encryptionPassword = "";
 
         /*
         TODO
-         .length() - кол-во букв в пароле.
-         .size() - кол-во букв в алфавите.
-         .charAt(int index) - получение текущего символа(буквы) по его индексу,
-         inputPassword.charAt(0) при слове "Hello" -> "H"
-         alphabetLetters.get(0) -> A;
-         alphabetLetters.get(1) -> B;
-         Напр-р, в слове Hello, .length() вернёт 5,
-         а от Hello метод .chatAt(1) вернёт "e".
-         Подсказка, использовать 2 цикла fori.
-         1-й для обхода всех букв пароля,
-         2-й для обхода каждой буквы с её индексом в алфавите
-         ABD ->
-         A - 0
-         B - 1
-         D - 3
+         ABD:
+            A -> 0;
+            B -> 1;
+            D -> 3
+            Подсказка:
+            1) Обойти каждую букву пароля.
+            Для получения кол-ва букв пароля(.length()).
+            Для получения текущей буквы(.charAt(int index)).
+            2) Обойти каждую букву алфавита для каждой буквы исходного пароля.
+            Для получения кол-ва букв алфавита(.size()).
+            Для получения текущей буквы алфавита(.get(int index)).
+            3) Сравнить буквы исходного пароля и текущей в алфавите
+            и вывести индекс и её саму в консоль
          */
         int step = 1;
-        for (int indexLetterInputPassword = 0; indexLetterInputPassword < inputPassword.length(); indexLetterInputPassword++) {
-            char letterInputPassword = inputPassword.charAt(indexLetterInputPassword);
-            for (int indexCurrentLetterAlphabet = 0; indexCurrentLetterAlphabet < alphabetLetters.size(); indexCurrentLetterAlphabet++) {
-                char currentLetterAlphabet = alphabetLetters.get(indexCurrentLetterAlphabet);
-                if (letterInputPassword == currentLetterAlphabet) {
-                    //TODO Hello -> I(7 + 1)g(4 + 2)o(11 + 3)p(11  + 4)t(14 + 5) -> Igopt
-                    newPassword += alphabetLetters.get(indexCurrentLetterAlphabet + step);
+        for (int indexForLetterPassword = 0; indexForLetterPassword < inputPassword.length(); indexForLetterPassword++) {
+            char letterPassword = inputPassword.charAt(indexForLetterPassword);
+            for (int indexForLetterAlphabet = 0; indexForLetterAlphabet < alphabet.size(); indexForLetterAlphabet++) {
+                char letterAlphabet = alphabet.get(indexForLetterAlphabet);
+                if (letterPassword == letterAlphabet) {
+                    //TODO y в слове "Fly", 50
+                    if (indexForLetterAlphabet + step > alphabet.size() - 1) {
+                        int index = indexForLetterAlphabet + step; //TODO 53
+                        System.out.println("Index: " + index);
+                        int real = index - (alphabet.size() - 1); //todo 2
+                        System.out.println("Real: " + real);
+                        char letter = alphabet.get(real - 1);
+                        System.out.println("Letter: " + letter);
+                        encryptionPassword += letter;
+                    } else {
+                        encryptionPassword += alphabet.get(indexForLetterAlphabet + step);
+                    }
                 }
             }
             step++;
         }
-        return newPassword;
+        return encryptionPassword;
     }
-
-    //TODO Декодировать новый пароль, чтобы он преобразовался в исходный
-    public static String returnPassword(String newPassword) {
-        String returnPassword = "";
-        int step = 1;
-        for (int indexLetterInputPassword = 0; indexLetterInputPassword < newPassword.length(); indexLetterInputPassword++) {
-            char letterInputPassword = newPassword.charAt(indexLetterInputPassword);
-            for (int indexCurrentLetterAlphabet = 0; indexCurrentLetterAlphabet < alphabetLetters.size(); indexCurrentLetterAlphabet++) {
-                char currentLetterAlphabet = alphabetLetters.get(indexCurrentLetterAlphabet);
-                if (letterInputPassword == currentLetterAlphabet) {
-                    //TODO Igopt -> H(8 - 1)e(6 - 2)l(14 - 3)l(15 - 4)o(19 - 5) -> Hello
-                    returnPassword += alphabetLetters.get(indexCurrentLetterAlphabet - step);
-                }
-            }
-            step++;
-        }
-        return returnPassword;
-    }
-
-    //TODO Fly -> G(5 + 1)n(11 + 2)b(23 + 3) -> Gnb
 }
