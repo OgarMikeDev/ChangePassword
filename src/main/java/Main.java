@@ -9,7 +9,7 @@ public class Main {
         String inputPassword = new Scanner(System.in).nextLine();
 
         /*
-        TODO Hello -> I(7 + 1)g(4 + 2)o(11 + 3)p(11 + 4)t(14 + 5) -> Igopt
+        TODO Hello -> I(7 + 1)g(30 + 2)o(37 + 3)p(37 + 4)t(40 + 5) -> Igopt
          (7 + 1) ->
             7 - индекс буквы "H" в английском алфавите(начинается с 0);
             1 - порядковый номер текущей буквы("H") в слове(начинается с 1)
