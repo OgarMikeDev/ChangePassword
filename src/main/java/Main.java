@@ -23,8 +23,10 @@ public class Main {
         }
 
         String encryptionPassword = encryptionPassword(inputPassword);
+        String decryptedPassword = decryptedPassword(encryptionPassword);
         System.out.println("Исходный пароль: " + inputPassword +
-                "\nЗашифрованный пароль: " + encryptionPassword);
+                "\nЗашифрованный пароль: " + encryptionPassword +
+                "\nРасшифрованный пароль: " + decryptedPassword);
     }
 
     public static String encryptionPassword(String inputPassword) {
@@ -69,5 +71,49 @@ public class Main {
             step++;
         }
         return encryptionPassword;
+    }
+
+    public static String decryptedPassword(String encryptionPassword) {
+        String decryptedPassword = "";
+
+        /*
+        TODO
+         ABD:
+            A -> 0;
+            B -> 1;
+            D -> 3
+            Подсказка:
+            1) Обойти каждую букву пароля.
+            Для получения кол-ва букв пароля(.length()).
+            Для получения текущей буквы(.charAt(int index)).
+            2) Обойти каждую букву алфавита для каждой буквы исходного пароля.
+            Для получения кол-ва букв алфавита(.size()).
+            Для получения текущей буквы алфавита(.get(int index)).
+            3) Сравнить буквы исходного пароля и текущей в алфавите
+            и вывести индекс и её саму в консоль
+         */
+        int step = 1;
+        for (int indexForLetterPassword = 0; indexForLetterPassword < encryptionPassword.length(); indexForLetterPassword++) {
+            char letterPassword = encryptionPassword.charAt(indexForLetterPassword);
+            for (int indexForLetterAlphabet = 0; indexForLetterAlphabet < alphabet.size(); indexForLetterAlphabet++) {
+                char letterAlphabet = alphabet.get(indexForLetterAlphabet);
+                if (letterPassword == letterAlphabet) {
+                    //TODO y в слове "Fly", 50
+                    if (indexForLetterAlphabet + step > alphabet.size() - 1) {
+                        int index = indexForLetterAlphabet + step; //TODO 53
+                        System.out.println("Index: " + index);
+                        int real = index - (alphabet.size() - 1); //todo 2
+                        System.out.println("Real: " + real);
+                        char letter = alphabet.get(real - 1);
+                        System.out.println("Letter: " + letter);
+                        decryptedPassword += letter;
+                    } else {
+                        decryptedPassword += alphabet.get(indexForLetterAlphabet - step);
+                    }
+                }
+            }
+            step++;
+        }
+        return decryptedPassword;
     }
 }
