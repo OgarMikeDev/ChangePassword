@@ -116,4 +116,54 @@ public class Main {
         }
         return decryptedPassword;
     }
+
+    // public static void main(String[] args) {
+    //     String password = "Hello10";
+    //     String keyPassword = "";
+    //     for (int i = 0; i < password.length(); i++) {
+    //         Random r = new Random();
+    //         char symbol = (char) r.nextInt(65, 122);
+    //         keyPassword += symbol;
+    //     }
+    //     System.out.println("Введённый пароль: " + password);
+    //     String encryptionPassword = encryptionPassword(password, keyPassword);
+    //     System.out.println("Зашифрованный пароль: " + encryptionPassword);
+    //     String decryptionPassword = decryptionPassword(encryptionPassword, keyPassword);
+    //     System.out.println("Расшифрованный пароль: " + decryptionPassword);
+    // }
+
+    // /*
+    // TODO
+    //  Text: Hello10
+    //  Key: N]D_TMJ
+    //  Ключ и текст одинаковой длины.
+    //  Переходим в цикл for, где обращаемся к элементам ключа и текста с одинаковым индексом.
+    //  H ^ N;
+    //  H = 72 в десятеричной;
+    //  N = 78 в десятеричной;
+    //  72 ^ 78 ->
+    //  1001000 ^ 1001110 = (шифротекст) 0000110 (6 в десятичной) ->
+    //     символ при шифровании в десятичной системе счисления (char) 6 =
+    //     ACK - символ подтверждения получения (не печатается).
+    //     И так для каждого символа пароля и ключа
+    //     В итоге получился зашифрованный текст: 8(3;|z
+    //  */
+    // public static String encryptionPassword(String password, String keyPassword) {
+    //     System.out.println("Ключ: " + keyPassword);
+    //     String encryptionPassword = "";
+    //     for (int i = 0; i < password.length(); i++) {
+    //         //TODO ^ побитовая операция XOR(исключающее или)
+    //         encryptionPassword += (char) (password.charAt(i) ^ keyPassword.charAt(i));
+    //     }
+    //     return encryptionPassword;
+    // }
+
+    // public static String decryptionPassword(String encryptionPassword, String keyPassword) {
+    //     String decryptionPassword = "";
+    //     for (int i = 0; i < encryptionPassword.length(); i++) {
+    //         //TODO ^ побитовая операция XOR(исключающее или)
+    //         decryptionPassword += (char) (encryptionPassword.charAt(i) ^ keyPassword.charAt(i));
+    //     }
+    //     return decryptionPassword;
+    // }
 }
