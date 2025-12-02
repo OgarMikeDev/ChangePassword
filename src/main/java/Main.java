@@ -117,6 +117,7 @@ public class Main {
         return decryptedPassword;
     }
 
+    //Способ шифрования - одноразовый блокнот
     // public static void main(String[] args) {
     //     String password = "Hello10";
     //     String keyPassword = "";
