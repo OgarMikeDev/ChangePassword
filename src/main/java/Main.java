@@ -185,12 +185,13 @@ public class Main {
 //         for (int indexSymbolPassword = 0; indexSymbolPassword < encryptionPassword.length(); indexSymbolPassword++) {
 //             /*
 //             TODO Задание:
-//              Написать алгоритм разшифровки 6-го элемента в encryptionPassword -> U
-//              1)
-//              2)
-//              3)
-//              4)
-//              5)
+//              Написать алгоритм разшифровки 6-го элемента в encryptionPassword -> U в 1
+//              Зашифрованный пароль 7?YUI, ключ TRS5sdy, пароль Hello10
+//              1) U в 85, d в 100
+//              2) 85 в 1010101, 100 в 1100100
+//              3) 1010101 ^ 1100100 -> 0110001
+//              4) 0110001 в 49
+//              5) 49 в 1
 //              */
 //             originPassword += (char) (encryptionPassword.charAt(indexSymbolPassword) ^ key.charAt(indexSymbolPassword));
 //         }
