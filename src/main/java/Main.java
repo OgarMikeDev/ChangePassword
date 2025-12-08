@@ -117,54 +117,83 @@ public class Main {
         return decryptedPassword;
     }
 
-    //Способ шифрования - одноразовый блокнот
-    // public static void main(String[] args) {
-    //     String password = "Hello10";
-    //     String keyPassword = "";
-    //     for (int i = 0; i < password.length(); i++) {
-    //         Random r = new Random();
-    //         char symbol = (char) r.nextInt(65, 122);
-    //         keyPassword += symbol;
-    //     }
-    //     System.out.println("Введённый пароль: " + password);
-    //     String encryptionPassword = encryptionPassword(password, keyPassword);
-    //     System.out.println("Зашифрованный пароль: " + encryptionPassword);
-    //     String decryptionPassword = decryptionPassword(encryptionPassword, keyPassword);
-    //     System.out.println("Расшифрованный пароль: " + decryptionPassword);
-    // }
+//     public static void main(String[] args) {
+//         System.out.println("Введите пароль: ");
+//         //TODO Hello10
+//         String password = new Scanner(System.in).nextLine();
+//         //TODO key имеет размер как и у пароля
+//         String key = "TRS5sdy";
+//         //TODO Прохождение по итерациям, равным кол-ву символов в пароле
+// //        for (int i = 0; i < password.length(); i++) {
+// //            Random random = new Random();
+// //            /*
+// //            TODO цифры, англ-е буквы и другие символы.
+// //             Сначала возвращается индекс в пределах от 48 до 122 включительно.
+// //             Затем с помощью (char) индекс заменяется символов,
+// //             кот-й этот индекс имеет,
+// //             напр-р, при индекс 65 символ будет является "A"
+// //             */
+// //            key += (char) random.nextInt(48, 123);
+// //        }
+// //        System.out.println("Пароль, введённый пользователем: " + password);
+//         System.out.println("Ключ для пароля: " + key);
+//         /*
+//         TODO
+//          Пароль: Hello10 -> (0)H(1)e(2)l(3)l(4)o(5)1(6)0;
+//          Ключ: TRS5sdy;
+//          Зашифрованный пароль: 7?YUI -> (0)(1)7(2)?(3)Y(4)(5)U(6)I
+//          */
+//         String encryptionPassword = encryptPassword(password, key);
+//         System.out.println("Зашифрованный пароль: " + encryptionPassword);
+//         String originPassword = decryptPassword(encryptionPassword, key);
+//         System.out.println("Расшифрованный пароль: " + originPassword);
+//     }
 
-    // /*
-    // TODO
-    //  Text: Hello10
-    //  Key: N]D_TMJ
-    //  Ключ и текст одинаковой длины.
-    //  Переходим в цикл for, где обращаемся к элементам ключа и текста с одинаковым индексом.
-    //  H ^ N;
-    //  H = 72 в десятеричной;
-    //  N = 78 в десятеричной;
-    //  72 ^ 78 ->
-    //  1001000 ^ 1001110 = (шифротекст) 0000110 (6 в десятичной) ->
-    //     символ при шифровании в десятичной системе счисления (char) 6 =
-    //     ACK - символ подтверждения получения (не печатается).
-    //     И так для каждого символа пароля и ключа
-    //     В итоге получился зашифрованный текст: 8(3;|z
-    //  */
-    // public static String encryptionPassword(String password, String keyPassword) {
-    //     System.out.println("Ключ: " + keyPassword);
-    //     String encryptionPassword = "";
-    //     for (int i = 0; i < password.length(); i++) {
-    //         //TODO ^ побитовая операция XOR(исключающее или)
-    //         encryptionPassword += (char) (password.charAt(i) ^ keyPassword.charAt(i));
-    //     }
-    //     return encryptionPassword;
-    // }
+//     public static String encryptPassword(String password, String key) {
+//         String encryptionPassword = "";
+//         for (int indexSymbolPassword = 0; indexSymbolPassword < password.length(); indexSymbolPassword++) {
+//             /*
+//             TODO
+//              Исключающее ИЛИ -> если равны, то 0, если не равны, то 1
+//              Пароль Hello10, ключ TRS5sdy, зашифрованный пароль 7?YUI
+//              1) l преобразуется в десятичный формат, т.е. в индекс 108; S в 83
+//              2) 108 преобразуется в двоичный формат -> 1101100; 83 в 1010011
+//              3) 1101100 ^ 1010011 -> Исключающее ИЛИ(если символы одинаковы -> 0, иначе 1) -> 0111111
+//              4) 0111111 из двоичного формата переводится в десятичный, т.е. в 63
+//              5) Преобразование 63 в char, т.е. в ?
+//              */
+//             /*
+//             TODO Задание:
+//              Пароль Hello10, ключ TRS5sdy, зашифрованный пароль 7?YUI
+//              Из зашифрованного пароля 7?YUI получить символ (5)"U",
+//              с помощью символа в Hello10 с индексом 5
+//              и символа в TRS5sdy с индексом 5.
+//              Если символов в двоичном коде меньше 7, то в начало добавляется 0
+//              1) 1 в 49; d в 100
+//              2) 49 в 110001; 100 в 1100100
+//              3) 0110001 ^ 1100100 -> 1010101
+//              4) 1010101 в 85
+//              5) 85 в U
+//              */
+//             encryptionPassword += (char) (password.charAt(indexSymbolPassword) ^ key.charAt(indexSymbolPassword));
+//         }
+//         return encryptionPassword;
+//     }
 
-    // public static String decryptionPassword(String encryptionPassword, String keyPassword) {
-    //     String decryptionPassword = "";
-    //     for (int i = 0; i < encryptionPassword.length(); i++) {
-    //         //TODO ^ побитовая операция XOR(исключающее или)
-    //         decryptionPassword += (char) (encryptionPassword.charAt(i) ^ keyPassword.charAt(i));
-    //     }
-    //     return decryptionPassword;
-    // }
+//     public static String decryptPassword(String encryptionPassword, String key) {
+//         String originPassword = "";
+//         for (int indexSymbolPassword = 0; indexSymbolPassword < encryptionPassword.length(); indexSymbolPassword++) {
+//             /*
+//             TODO Задание:
+//              Написать алгоритм разшифровки 6-го элемента в encryptionPassword -> U
+//              1)
+//              2)
+//              3)
+//              4)
+//              5)
+//              */
+//             originPassword += (char) (encryptionPassword.charAt(indexSymbolPassword) ^ key.charAt(indexSymbolPassword));
+//         }
+//         return originPassword;
+//     }
 }
